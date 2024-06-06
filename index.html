@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kibabii Healthcare Appointment Booking sysytem</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Kibabii Health care</h1>
+            <h2>Book an Appointment</h2>
+            <p>Welcome to our healthcare center. Please fill out the form to book an appointment.</p>
+        </div>
+        <form id="appointmentForm">
+            <div class="form-group">
+                <label for="patientName">Patient Name</label>
+                <input type="text" class="form-control" id="patientName" placeholder="Enter your name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number" required>
+            </div>
+            <div class="form-group">
+                <label for="doctor">Choose Doctor</label>
+                <select class="form-control" id="doctor" required>
+                    <option>Dr. Smith</option>
+                    <option>Dr. Johnson</option>
+                    <option>Dr. Williams</option>
+                    <option>Dr. Brown</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="date">Preferred Date</label>
+                <input type="date" class="form-control" id="date" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Book Appointment</button>
+        </form>
+        <div id="confirmation" class="mt-4"></div>
+    </div>
+
+    <script>
+        document.getElementById('appointmentForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const name = document.getElementById('patientName').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const doctor = document.getElementById('doctor').value;
+            const date = document.getElementById('date').value;
+
+            const confirmationMessage = `
+                <div class="alert alert-success" role="alert">
+                    <h4 class="alert-heading">Appointment Confirmed!</h4>
+                    <p>Thank you, ${name}. Your appointment with ${doctor} on ${date} has been booked successfully.</p>
+                    <hr>
+                    <p class="mb-0">A confirmation email has been sent to ${email}. We will contact you at ${phone} if necessary.</p>
+                </div>
+            `;
+            document.getElementById('confirmation').innerHTML = confirmationMessage;
+            document.getElementById('appointmentForm').reset();
+        });
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
